@@ -4,6 +4,6 @@ class Settings(BaseSettings):
     DATABASE_URL: str
 
     class Config:
-        env_file = "../.env"  # Path relative to where config.py is
+        env_file = ".env"  # Changed from "../.env" to ".env"
 
 settings = Settings()
