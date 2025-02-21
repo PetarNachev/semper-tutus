@@ -27,3 +27,11 @@ class UserInDBBase(UserBase):
 # Properties to return via API
 class User(UserInDBBase):
     pass
+
+class UserResponse(UserBase):
+    id: int
+    is_active: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True

@@ -2,6 +2,8 @@ from sqlalchemy import Boolean, Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from ..database import Base
+from ..core.security import get_password_hash, verify_password
+
 
 class User(Base):
     __tablename__ = "users"
@@ -14,4 +16,10 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     # Relationship with notes
-    notes = relationship("Note", back_populates="owner")
+    # notes = relationship("Note", back_populates="owner")
+
+    def set_password(self, password: str):
+        self.hashed_password = get_password_hash(password)
+
+    def check_password(self, password: str) -> bool:
+        return verify_password(password, self.hashed_password)
