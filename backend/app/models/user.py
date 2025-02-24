@@ -14,9 +14,12 @@ class User(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    encryption_salt = Column(String, nullable=True)  # Changed to nullable=True
+    encrypted_master_key = Column(String, nullable=True)
 
     # Relationship with notes
-    # notes = relationship("Note", back_populates="owner")
+    notes = relationship("Note", back_populates="owner")
 
     def set_password(self, password: str):
         self.hashed_password = get_password_hash(password)

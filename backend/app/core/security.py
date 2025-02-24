@@ -1,10 +1,10 @@
+# app/core/security.py
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from datetime import datetime, timedelta, UTC
 from typing import Optional
-from jose import JWTError, jwt
+from jose import jwt
 from ..config import settings
-
 
 ph = PasswordHasher()
 

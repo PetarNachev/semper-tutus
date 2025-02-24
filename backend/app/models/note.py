@@ -16,4 +16,4 @@ class Note(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
 
     # Relationship with user
-    # owner = relationship("User", back_populates="notes")
+    owner = relationship("User", back_populates="notes")
