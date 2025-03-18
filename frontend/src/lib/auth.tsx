@@ -1,4 +1,5 @@
-// src/lib/auth.ts
+'use client';
+
 import { useState, useEffect } from 'react';
 
 interface User {

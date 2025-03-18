@@ -14,6 +14,8 @@ class Note(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     user_id = Column(Integer, ForeignKey("users.id"))
+    folder_id = Column(Integer, ForeignKey("folders.id"), nullable=True)
 
-    # Relationship with user
+    # Relationships
     owner = relationship("User", back_populates="notes")
+    folder = relationship("Folder", back_populates="notes")

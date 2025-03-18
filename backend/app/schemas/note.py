@@ -8,6 +8,7 @@ class NoteBase(BaseModel):
     content: str
     tags: Optional[List[str]] = []
     is_encrypted: bool = True
+    folder_id: Optional[int] = None
 
 
 class NoteCreate(NoteBase):
@@ -17,6 +18,9 @@ class NoteCreate(NoteBase):
 class NoteUpdate(NoteBase):
     title: Optional[str] = None
     content: Optional[str] = None
+    tags: Optional[List[str]] = None
+    is_encrypted: Optional[bool] = None
+    folder_id: Optional[int] = None
 
 
 class Note(NoteBase):
@@ -36,4 +40,4 @@ class NoteResponse(NoteBase):  # Add this class
     updated_at: Optional[datetime]
 
     class Config:
-        from_attributes = True
+        orm_mode = True

@@ -17,6 +17,10 @@ class User(Base):
     
     encryption_salt = Column(String, nullable=True)  # Changed to nullable=True
     encrypted_master_key = Column(String, nullable=True)
+    
+    # files = relationship("File", back_populates="owner", cascade="all, delete-orphan")
+    
+    folders = relationship("Folder", back_populates="owner")
 
     # Relationship with notes
     notes = relationship("Note", back_populates="owner")
